@@ -104,7 +104,38 @@ def reg():
     sex=OptionMenu(m,sx,*gen)
     sex.config(bg='slategray1',width=35,bd=4,font=("consolas",14,'bold'),relief='sunken')
     sex.place(x=150,y=200)
-    reg_But=Button(m,padx=10,pady=3,bd=4,bg='royalblue1',text="Register",font=("Courier New",15,'bold'),width=10)
+    
+    def click_reg():
+        users=(db.shallow().get()).val()
+        users=list(users)
+        uname=[str((db.child(x).child("Name").get().val())) for x in users]
+        nm=name.get()
+        s=sx.get()
+        yr=year.get()
+        phn=ph.get()
+        if nm in uname:
+            tkinter.messagebox.showinfo("Error!", "Already Registered!")
+        else:
+            ind=users[-1]
+            ind=int(ind[2:])
+            ind=ind+1
+            n=3-len(str(ind))
+            uid="AA"
+            for i in range(n):
+                uid+="0"
+            uid=uid+str(ind)
+            temp_data={
+                "Name":nm,
+                "Age":yr,
+                "Phone":phn,
+                "Sex":s,
+                "Prescription":{},
+                "History":{}
+            }
+            db.child(uid).set(temp_data)
+            m.destroy()
+            tkinter.messagebox.showinfo("Successful", "Registration Successfull!")
+    reg_But=Button(m,padx=10,pady=3,bd=4,bg='royalblue1',text="Register",font=("Courier New",15,'bold'),width=10,command=click_reg)
     reg_But.place(x=250,y=250)
 
     mainloop()
