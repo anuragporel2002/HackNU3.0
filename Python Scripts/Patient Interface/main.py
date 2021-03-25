@@ -22,6 +22,7 @@ config={
 global db
 firebase = pyrebase.initialize_app(config)
 db=firebase.database()
+#------------------------------------------------------------------------------------------
 
 #Functions----------------------------------------------------------------------------------
 def down_pres():
@@ -30,7 +31,7 @@ def down_pres():
     pes=(db.child(user).child("Prescription").get()).val()
     year=(str(pes[-1]["Date"]).split("-"))[-1]
     name=(db.child(user).child("Name").get()).val()
-    age=int((db.child(user).child("Age").get()).val())-int(year)
+    age=int(year)-int((db.child(user).child("Age").get()).val())
     sex=(db.child(user).child("Sex").get()).val()
     doc=pes[-1]["Doctor"]
     dat=pes[-1]["Date"]
@@ -53,7 +54,7 @@ def down_pres():
     for i in range(1,len(pes[-1]["Medication"])):
         pdf.cell(200, 10, txt="     "+str(pes[-1]["Medication"][i]).capitalize(), ln=8+i, align='L')
     
-    title=str(name)+str(date)+".pdf"
+    title=str(name)+str(dat)+".pdf"
     pdf.output(title)
 
 def gen_tic():
@@ -139,7 +140,7 @@ def reg():
     reg_But.place(x=250,y=250)
 
     mainloop()
-
+#-------------------------------------------------------------------------------------------
 
 #Initialize---------------------------------------------------------------------------------
 app=Tk()
