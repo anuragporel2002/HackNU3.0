@@ -35,27 +35,31 @@ def down_pres():
     sex=(db.child(user).child("Sex").get()).val()
     doc=pes[-1]["Doctor"]
     dat=pes[-1]["Date"]
-    print(str(name),str(age),str(sex),str(doc))
-    print(str(pes[-1]["Medication"]))
     
     pdf=FPDF()
     pdf.add_page()
-    pdf.set_font("Arial",'B',20)
+    pdf.set_font("Arial",'B',25)
 
-    pdf.cell(200, 10, txt = "Doctor: "+str(doc),ln = 1, align = 'L')
+    pdf.image('/home/anurag/Documents/NIIT University/Semester-IV/Computer Architechture/HackNU3.0/Python Scripts/Patient Interface/rx.jpg',x=10,y=10,w=25,h=25)
+    pdf.cell(200, 10, txt="PRESCRIPTION", ln=1, align='C')
+    pdf.set_font("Arial",'B',20)
+    pdf.cell(200, 10, txt='  ',ln=2,align='L')
+    pdf.cell(200, 10, txt='_______________________________________________',ln=3,align='L')
+    pdf.cell(200, 10, txt = "Doctor: "+str(doc),ln = 4, align = 'L')
     pdf.set_font("Arial", size = 13)
-    pdf.cell(200, 10, txt = "Name: "+str(name), ln=2, align='L') 
-    pdf.cell(200, 10, txt = "Age:"+str(age)+"                                             Sex:"+str(sex), ln=3, align='L')
-    pdf.cell(200, 10, txt="Date: "+str(dat), ln=4, align='L')
-    pdf.cell(200, 10, txt="Place: "+str(pes[-1]["place"]), ln=5, align='L')
+    pdf.cell(200, 10, txt = "Name: "+str(name), ln=5, align='L') 
+    pdf.cell(200, 10, txt = "Age:"+str(age)+"                                             Sex:"+str(sex), ln=6, align='L')
+    pdf.cell(200, 10, txt="Date: "+str(dat), ln=7, align='L')
+    pdf.cell(200, 10, txt="Place: "+str(pes[-1]["place"]), ln=8, align='L')
     pdf.cell(200, 10, txt = "________________________________________________________________________", ln=6, align='L') 
-    pdf.cell(200, 10, txt="Diagnosis: "+str(pes[-1]["Diagnosis"]), ln=7, align='L')
-    pdf.cell(200, 10, txt="Medication: ", ln=8, align='L')
+    pdf.cell(200, 10, txt="Diagnosis: "+str(pes[-1]["Diagnosis"]), ln=9, align='L')
+    pdf.cell(200, 10, txt="Medication: ", ln=10, align='L')
     for i in range(1,len(pes[-1]["Medication"])):
         pdf.cell(200, 10, txt="     "+str(pes[-1]["Medication"][i]).capitalize(), ln=8+i, align='L')
     
     title=str(name)+str(dat)+".pdf"
     pdf.output(title)
+    tkinter.messagebox.showinfo("Successful", "Prescription Saved Successfully!")
 
 def gen_tic():
     global db
