@@ -139,7 +139,7 @@ def reg():
             }
             db.child(uid).set(temp_data)
             m.destroy()
-            tkinter.messagebox.showinfo("Successful", "Registration Successfull!")
+            tkinter.messagebox.showinfo("Successful", "Your Unique id is "+str(uid))
     reg_But=Button(m,padx=10,pady=3,bd=4,bg='royalblue1',text="Register",font=("Courier New",15,'bold'),width=10,command=click_reg)
     reg_But.place(x=250,y=250)
 
