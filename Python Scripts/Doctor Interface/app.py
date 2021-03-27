@@ -29,7 +29,7 @@ db=firebase.database()
 app=Tk()
 app.geometry('400x210')
 app.title('The Bug Slayers')
-mlabel=Label(app, text="DocsApp+", bg='white', font=('consolas', 24, 'bold'),fg='green')
+mlabel=Label(app, text="Tech-Care", bg='white', font=('consolas', 24, 'bold'),fg='green')
 mlabel.pack(side=TOP)
 app.config(background='white')
 #-------------------------------------------------------------------------------------------

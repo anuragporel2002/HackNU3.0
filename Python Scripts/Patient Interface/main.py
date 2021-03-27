@@ -139,7 +139,7 @@ def reg():
             }
             db.child(uid).set(temp_data)
             m.destroy()
-            tkinter.messagebox.showinfo("Successful", "Registration Successfull!")
+            tkinter.messagebox.showinfo("Successful", "Your Unique id is "+str(uid))
     reg_But=Button(m,padx=10,pady=3,bd=4,bg='royalblue1',text="Register",font=("Courier New",15,'bold'),width=10,command=click_reg)
     reg_But.place(x=250,y=250)
 
@@ -150,7 +150,7 @@ def reg():
 app=Tk()
 app.geometry('400x210')
 app.title('The Bug Slayers')
-mlabel=Label(app, text="DocsApp+", bg='white', font=('consolas', 24, 'bold'),fg='green')
+mlabel=Label(app, text="Tech-Care", bg='white', font=('consolas', 24, 'bold'),fg='green')
 mlabel.pack(side=TOP)
 app.config(background='white')
 #-------------------------------------------------------------------------------------------
